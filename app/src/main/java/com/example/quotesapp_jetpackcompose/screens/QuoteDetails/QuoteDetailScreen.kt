@@ -3,6 +3,7 @@ package com.example.quotesapp_jetpackcompose.screens.QuoteDetails
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.FormatQuote
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -50,6 +52,18 @@ fun QuoteDetailScreen(quote: Quote) {
         contentAlignment = Alignment.Center
 
     ) {
+
+        Image(
+            imageVector = Icons.Filled.ArrowBack,
+            contentDescription = "Back",
+            modifier = Modifier
+                .padding(16.dp)
+                .align(alignment = Alignment.TopStart)
+                .clickable {
+                    DataManage.switchPages(null)
+                }
+        )
+
         Card(
             elevation = CardDefaults.cardElevation(4.dp),
             modifier = Modifier.padding(32.dp),
