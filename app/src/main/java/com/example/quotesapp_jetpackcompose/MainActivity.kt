@@ -1,7 +1,6 @@
 package com.example.quotesapp_jetpackcompose
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
@@ -11,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.example.quotesapp_jetpackcompose.screens.QuoteDetails.QuoteDetailScreen
 import com.example.quotesapp_jetpackcompose.screens.QuoteList.QuoteListScreen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         CoroutineScope(Dispatchers.IO).launch {
             delay(1000)
-            DataManage.lodeAssetsFromFile(applicationContext)
+            DataManage.lodeAssetsFromFile(applicationContext, "quotes.json")
         }
         setContent {
             App()
@@ -33,8 +33,12 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun App() {
     if (DataManage.isDataLoaded.value) {
-        QuoteListScreen(data = DataManage.data) {
-
+        if(DataManage.currentScreen.value == Pages.LISTING){
+            QuoteListScreen(data = DataManage.data) {
+                DataManage.switchPages(it)
+            }
+        }else{
+            DataManage.currentQuote?.let { QuoteDetailScreen(quote = it) }
         }
     } else {
         Box(
@@ -47,5 +51,10 @@ fun App() {
             )
         }
     }
+}
+
+enum class Pages{
+    LISTING,
+    DETAIL
 }
 

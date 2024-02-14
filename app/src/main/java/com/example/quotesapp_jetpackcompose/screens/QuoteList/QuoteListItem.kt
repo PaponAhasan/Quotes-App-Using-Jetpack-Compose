@@ -1,6 +1,5 @@
 package com.example.quotesapp_jetpackcompose.screens.QuoteList
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -35,6 +34,10 @@ fun QuoteListItem(quote: Quote, onClick: (quote: Quote)-> Unit) {
         modifier = Modifier
             .padding(8.dp)
             .clickable { onClick(quote) },
+        colors = CardDefaults.cardColors(
+            containerColor = Color.White, //Card background color
+            //contentColor = Color.White  //Card content color,e.g.text
+        ),
     ) {
         Row(modifier = Modifier.padding(16.dp)) {
             Image(

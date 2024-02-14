@@ -1,5 +1,6 @@
 package com.example.quotesapp_jetpackcompose.screens.QuoteDetails
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -25,11 +26,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
+import com.example.quotesapp_jetpackcompose.DataManage
 import com.example.quotesapp_jetpackcompose.R
 import com.example.quotesapp_jetpackcompose.models.Quote
 
 @Composable
 fun QuoteDetailScreen(quote: Quote) {
+    BackHandler {
+        DataManage.switchPages(null)
+    }
     Box(
         modifier = Modifier
             .fillMaxSize(1f)
@@ -46,7 +51,11 @@ fun QuoteDetailScreen(quote: Quote) {
     ) {
         Card(
             elevation = CardDefaults.cardElevation(4.dp),
-            modifier = Modifier.padding(32.dp)
+            modifier = Modifier.padding(32.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = Color.White, //Card background color
+                //contentColor = Color.White  //Card content color,e.g.text
+            ),
         ) {
             Column(
                 verticalArrangement = Arrangement.Center,

@@ -12,9 +12,12 @@ object DataManage {
 
     var data = emptyList<Quote>()
     var isDataLoaded = mutableStateOf(false)
-    fun lodeAssetsFromFile(context: Context) {
+    var currentScreen = mutableStateOf(Pages.LISTING)
+    var currentQuote : Quote? = null
+
+    fun lodeAssetsFromFile(context: Context, fileName: String) {
         try {
-            val jsonString = readJsonFromAssets(context, "quotes.json")
+            val jsonString = readJsonFromAssets(context, fileName)
             val bookList = parseJsonToModel(jsonString)
             data = bookList
             isDataLoaded.value = true
@@ -24,13 +27,21 @@ object DataManage {
             isDataLoaded.value = false
         }
     }
-}
 
-fun readJsonFromAssets(context: Context, fileName: String): String {
-    return context.assets.open(fileName).bufferedReader().use { it.readText() }
-}
+    private fun readJsonFromAssets(context: Context, fileName: String): String {
+        return context.assets.open(fileName).bufferedReader().use { it.readText() }
+    }
 
-fun parseJsonToModel(jsonString: String): List<Quote> {
-    val gson = Gson()
-    return gson.fromJson(jsonString, object : TypeToken<List<Quote>>() {}.type)
+    private fun parseJsonToModel(jsonString: String): List<Quote> {
+        val gson = Gson()
+        return gson.fromJson(jsonString, object : TypeToken<List<Quote>>() {}.type)
+    }
+
+    fun switchPages(quote: Quote?) {
+        if(currentScreen.value == Pages.LISTING){
+            currentQuote = quote
+            currentScreen.value = Pages.DETAIL
+        }
+        else currentScreen.value = Pages.LISTING
+    }
 }
