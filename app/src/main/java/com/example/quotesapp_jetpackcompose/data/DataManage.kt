@@ -1,8 +1,9 @@
-package com.example.quotesapp_jetpackcompose
+package com.example.quotesapp_jetpackcompose.data
 
 import android.content.Context
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
+import com.example.quotesapp_jetpackcompose.Pages
 import com.example.quotesapp_jetpackcompose.models.Quote
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

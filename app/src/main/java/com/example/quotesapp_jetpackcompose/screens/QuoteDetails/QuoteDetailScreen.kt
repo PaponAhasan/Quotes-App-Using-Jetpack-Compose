@@ -26,7 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
-import com.example.quotesapp_jetpackcompose.DataManage
+import com.example.quotesapp_jetpackcompose.data.DataManage
 import com.example.quotesapp_jetpackcompose.R
 import com.example.quotesapp_jetpackcompose.models.Quote
 
@@ -35,6 +35,7 @@ fun QuoteDetailScreen(quote: Quote) {
     BackHandler {
         DataManage.switchPages(null)
     }
+
     Box(
         modifier = Modifier
             .fillMaxSize(1f)

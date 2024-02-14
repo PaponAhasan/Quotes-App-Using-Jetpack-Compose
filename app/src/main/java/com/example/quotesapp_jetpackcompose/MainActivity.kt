@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.example.quotesapp_jetpackcompose.data.DataManage
 import com.example.quotesapp_jetpackcompose.screens.QuoteDetails.QuoteDetailScreen
 import com.example.quotesapp_jetpackcompose.screens.QuoteList.QuoteListScreen
 import kotlinx.coroutines.CoroutineScope
